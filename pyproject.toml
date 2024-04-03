@@ -1,0 +1,49 @@
+[project]
+name = "overrun"
+version = "0.1.0"
+description = "Task runner for persistent local development environments"
+authors = [
+    {name = "Terry Kerr", email = "terry@idletea.net"},
+]
+requires-python = ">=3.12"
+readme = "readme.md"
+license = {text = "MIT"}
+dependencies = []
+
+[project.scripts]
+ovrn = "overrun.cli:main"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "python-lsp-server>=1.11.0",
+    "ruff>=0.3.5",
+    "ruff-lsp>=0.0.53",
+    "pyright>=1.1.357",
+    "pytest>=8.1.1",
+    "pytest-asyncio>=0.23.6",
+]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.pyright]
+strict = ["*"]
+
+[tool.ruff.lint]
+select = [
+    "ARG", "B", "C", "DTZ", "E", "ERA", "F",
+    "I", "LOG", "PLE", "PTH", "Q", "RET",
+    "RUF", "SIM", "T", "TID", "TRY",
+]
+ignore = [
+    "TRY003", # aggressive limit on exception error message length
+]
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+no-lines-before = ["first-party", "local-folder", "third-party"]
