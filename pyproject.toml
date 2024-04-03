@@ -8,10 +8,14 @@ authors = [
 requires-python = ">=3.12"
 readme = "readme.md"
 license = {text = "MIT"}
-dependencies = []
+dependencies = [
+    "rich>=13.7.1",
+    "click>=8.1.7",
+    "pydantic>=2.6.4",
+]
 
 [project.scripts]
-ovrn = "overrun.cli:main"
+overrun = "overrun.cli:main"
 
 [build-system]
 requires = ["pdm-backend"]
@@ -28,6 +32,7 @@ dev = [
     "pyright>=1.1.357",
     "pytest>=8.1.1",
     "pytest-asyncio>=0.23.6",
+    "pytest-mock>=3.14.0",
 ]
 [tool.pytest.ini_options]
 pythonpath = ["."]
