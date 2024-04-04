@@ -7,6 +7,8 @@ from typing import Callable, ContextManager
 import pytest
 from pytest_mock import MockerFixture
 from overrun.config import ENV_CONFIG_PATH, Config
+from overrun.registry import Registry
+from overrun.runtime import Runtime
 
 type cd_t = Callable[[Path | str], ContextManager[Path]]
 type mkdir_t = Callable[..., None]
@@ -53,6 +55,16 @@ def cwp(tmpdir: Path, mkdir: mkdir_t) -> Path:
 @pytest.fixture
 def default_config(cwp: Path) -> Config:  # noqa: ARG001
     return Config.find_or_default()
+
+
+@pytest.fixture
+def default_registry(default_config: Config) -> Registry:
+    return Registry(target_dirs=default_config.target_directories)
+
+
+@pytest.fixture
+def default_runtime(default_config: Config, default_registry: Registry):
+    return Runtime(config=default_config, registry=default_registry)
 
 
 @pytest.fixture

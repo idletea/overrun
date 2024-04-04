@@ -61,7 +61,7 @@ class Config:
         config_file = {}
         if path := _default_config_search():
             with path.open("rb") as fp:
-                logging.info(f"Using config file {path}")
+                logging.debug(f"Using config file {path}")
                 config_file = tomllib.load(fp)
         options = ConfigOptions(**config_file)
 
@@ -70,7 +70,6 @@ class Config:
         sibling_projects = _sibling_projects(cwp=cwp, options=options)
         projects = {cwp, *sibling_projects}
         target_directories = _target_directories(projects=projects, options=options)
-
 
         return cls(
             pwd=pwd,

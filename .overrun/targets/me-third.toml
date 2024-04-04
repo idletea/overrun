@@ -1,0 +1,5 @@
+[target]
+dependencies = ["me-second", "me-second-also"]
+
+[exec]
+argv = ["sleep", "1"]

@@ -1,0 +1,13 @@
+[homebrew]
+packages = ["1password-cli"]
+
+[exec]
+env = { XDG_CONFIG_HOME = "/Users/tkerr/.config" }
+argv = [
+    "bash", "-c",
+    """
+    eval $(op signin --account movableink)
+    SECRET="$(op read op://Private/OVERRUN_NOT_REAL_TOKEN/credential)"
+    echo "export OVERRUN_NOT_REAL_TOKEN=$SECRET" > ../../.env
+    """,
+]

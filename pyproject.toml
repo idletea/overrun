@@ -36,6 +36,7 @@ dev = [
 ]
 [tool.pytest.ini_options]
 pythonpath = ["."]
+log_cli_level = "DEBUG"
 
 [tool.pyright]
 strict = ["*"]
