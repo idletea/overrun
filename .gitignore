@@ -1,0 +1,13 @@
+__pycache__
+*.py[cod]
+
+build
+dist
+eggs
+sdist
+wheels
+.pdm-build
+.pdm.toml
+.pdm-python
+.pytest_cache
+.mise/venv

@@ -1,0 +1,48 @@
+[project]
+name = "overrun"
+version = "0.1.0"
+description = "Cross-repo task running tool"
+authors = [
+    {name = "Terry Kerr", email = "terry@idletea.net"},
+]
+dependencies = []
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "python-lsp-server>=1.11.0",
+    "ruff>=0.4.1",
+    "ruff-lsp>=0.0.53",
+    "pyright>=1.1.357",
+    "pytest>=8.1.1",
+    "pytest-asyncio>=0.23.6",
+    "pytest-mock>=3.14.0",
+]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+log_cli_level = "DEBUG"
+
+[tool.pyright]
+strict = ["*"]
+
+[tool.ruff.lint]
+select = [
+    "ARG", "B", "C", "DTZ", "E", "ERA", "F",
+    "I", "LOG", "PLE", "PTH", "Q", "RET",
+    "RUF", "SIM", "T", "TID", "TRY",
+]
+ignore = [
+    "TRY003", # aggressive limit on exception error message length
+]
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+no-lines-before = ["first-party", "local-folder", "third-party"]
