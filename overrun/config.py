@@ -68,7 +68,7 @@ class Config:
         # map `config_file` to a dict of config_values to override defaults
         config_values = {}
         match config_file:
-            case Path():
+            case Path() | None:
                 path = _config_file_search(explicit_path=config_file)
                 if isinstance(path, ConfigFailed):
                     return path
@@ -88,8 +88,6 @@ class Config:
                             additional_context=str(exc),
                         )
                         return path
-            case None:
-                pass
             case _:
                 try:
                     config_values = tomllib.load(config_file)

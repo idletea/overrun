@@ -11,8 +11,9 @@ if TYPE_CHECKING:
     from .conftest import cd_t, mkdir_t, sibling_t
 
 
-def test_default_not_in_project():
-    config = Config.attempt_init()
+def test_default_not_in_project(tmp_path: Path, cd: cd_t):
+    with cd(tmp_path):
+        config = Config.attempt_init()
     assert isinstance(config, ConfigFailed)
     assert config.cause == ConfigFailed.Cause.NotInProject
     assert config.options == ConfigOptions()

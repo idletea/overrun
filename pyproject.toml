@@ -5,10 +5,17 @@ description = "Cross-repo task running tool"
 authors = [
     {name = "Terry Kerr", email = "terry@idletea.net"},
 ]
-dependencies = []
+dependencies = [
+    "click>=8.1.7",
+    "rich>=13.7.1",
+    "tomli-w>=1.0.0",
+]
 requires-python = ">=3.12"
-readme = "README.md"
+readme = "readme.md"
 license = {text = "MIT"}
+
+[project.scripts]
+overrun = "overrun.cli:main"
 
 [build-system]
 requires = ["pdm-backend"]
