@@ -8,7 +8,9 @@ from typing import BinaryIO
 import rich
 import tomli_w
 from rich.table import Table
+from overrun.component import register
 from overrun.config import Config, ConfigFailed
+from overrun.registry import Registry, RegistryFailed
 
 TAB = "    "
 
@@ -16,8 +18,25 @@ TAB = "    "
 @dataclass
 class AppBuilder:
     config: Config | ConfigFailed = field(default_factory=Config.attempt_init)
+    registry: Registry | RegistryFailed | None = None
+
+    def __post_init__(self):
+        self.registry = self._attempt_init_registry()
+
+    @property
+    def has_config(self) -> bool:
+        return isinstance(self.config, Config)
+
+    @property
+    def has_registry(self) -> bool:
+        return isinstance(self.registry, Registry)
 
     def doctor(self):
+        """Dumps a load of context that would be used to run the app.
+
+        Meant to help a human debug any potential issues, or just see what
+        is dynamically discovered by overrun in the current directory.
+        """
         # config info or config fail reason
         table = Table(box=None, pad_edge=False, show_header=False)
         if isinstance(self.config, Config):
@@ -64,3 +83,8 @@ class AppBuilder:
             output.write(toml.encode("utf-8"))
         else:
             output.write(b"<could not load a valid config>")
+
+    def _attempt_init_registry(self) -> Registry | RegistryFailed | None:
+        if not self.has_config:
+            return None
+        Registry.attempt_init()

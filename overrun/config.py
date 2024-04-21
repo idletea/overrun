@@ -7,9 +7,10 @@ import os
 import tomllib
 from collections import defaultdict
 from dataclasses import dataclass
+import io
 from enum import StrEnum
 from pathlib import Path, PurePath
-from typing import Self, BinaryIO
+from typing import Self
 import pydantic
 
 ENV_CONFIG_PATH = "OVERRUN_CONFIG"
@@ -61,9 +62,9 @@ class Config:
 
     @classmethod
     def attempt_init(
-        cls: type[Self],
+        cls,
         *,
-        config_file: Path | BinaryIO | None = None,
+        config_file: Path | io.IOBase | None = None,
     ) -> Self | ConfigFailed:
         # map `config_file` to a dict of config_values to override defaults
         config_values = {}

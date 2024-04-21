@@ -51,19 +51,19 @@ def cli(ctx: click.Context, *, verbose: bool) -> None:
     ctx.obj = CtxObj(app_builder=AppBuilder())
 
 
-@cli.command
+@cli.command(help="Current version of overrun")
 def version():
     sys.stdout.write(f"{overrun.__version__}\n")
 
 
-@cli.command
+@cli.command(help="Information to help debug")
 @click.pass_context
 def doctor(ctx: click.Context):
     context: CtxObj = ctx.obj
     context.app_builder.doctor()
 
 
-@cli.command
+@cli.command(help="Output a toml document of the loaded configuration")
 @click.pass_context
 def config(ctx: click.Context):
     context: CtxObj = ctx.obj

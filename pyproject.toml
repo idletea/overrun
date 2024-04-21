@@ -33,10 +33,12 @@ dev = [
     "pytest>=8.1.1",
     "pytest-asyncio>=0.23.6",
     "pytest-mock>=3.14.0",
+    "pytest-beartype>=0.0.2",
 ]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 log_cli_level = "DEBUG"
+beartype_packages = "overrun"
 
 [tool.pyright]
 strict = ["*"]

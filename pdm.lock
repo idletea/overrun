@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:c88ecd184dc353cf62133214442bd76d61bd3412b7e88fce5713524d1f05c7bb"
+content_hash = "sha256:43c600bbccc458f8605807c894b4a949230b42ee23622caca941676b4e593ad6"
 
 [[package]]
 name = "attrs"
@@ -16,6 +16,17 @@ groups = ["dev"]
 files = [
     {file = "attrs-23.2.0-py3-none-any.whl", hash = "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"},
     {file = "attrs-23.2.0.tar.gz", hash = "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"},
+]
+
+[[package]]
+name = "beartype"
+version = "0.18.5"
+requires_python = ">=3.8.0"
+summary = "Unbearably fast runtime type checking in pure Python."
+groups = ["dev"]
+files = [
+    {file = "beartype-0.18.5-py3-none-any.whl", hash = "sha256:5301a14f2a9a5540fe47ec6d34d758e9cd8331d36c4760fc7a5499ab86310089"},
+    {file = "beartype-0.18.5.tar.gz", hash = "sha256:264ddc2f1da9ec94ff639141fbe33d22e12a9f75aa863b83b7046ffff1381927"},
 ]
 
 [[package]]
@@ -250,6 +261,21 @@ dependencies = [
 files = [
     {file = "pytest-asyncio-0.23.6.tar.gz", hash = "sha256:ffe523a89c1c222598c76856e76852b787504ddb72dd5d9b6617ffa8aa2cde5f"},
     {file = "pytest_asyncio-0.23.6-py3-none-any.whl", hash = "sha256:68516fdd1018ac57b846c9846b954f0393b26f094764a28c955eabb0536a4e8a"},
+]
+
+[[package]]
+name = "pytest-beartype"
+version = "0.0.2"
+requires_python = ">=3.8"
+summary = "Pytest plugin to run your tests with beartype checking enabled."
+groups = ["dev"]
+dependencies = [
+    "beartype",
+    "pytest",
+]
+files = [
+    {file = "pytest-beartype-0.0.2.tar.gz", hash = "sha256:73238bc000da6fe42e44565763d89c109edd7bec876bef9dbacfc88a16229e6f"},
+    {file = "pytest_beartype-0.0.2-py3-none-any.whl", hash = "sha256:3203bc75e04b3d166623aaf5b58c766b3cecc0e0b7082013de9400c7a184605b"},
 ]
 
 [[package]]
