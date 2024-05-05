@@ -8,7 +8,6 @@ from typing import BinaryIO
 import rich
 import tomli_w
 from rich.table import Table
-from overrun.component import register
 from overrun.config import Config, ConfigFailed
 from overrun.registry import Registry, RegistryFailed
 
@@ -18,7 +17,7 @@ TAB = "    "
 @dataclass
 class AppBuilder:
     config: Config | ConfigFailed = field(default_factory=Config.attempt_init)
-    registry: Registry | RegistryFailed | None = None
+    registry: Registry | RegistryFailed = field(init=False)
 
     def __post_init__(self):
         self.registry = self._attempt_init_registry()
@@ -84,7 +83,5 @@ class AppBuilder:
         else:
             output.write(b"<could not load a valid config>")
 
-    def _attempt_init_registry(self) -> Registry | RegistryFailed | None:
-        if not self.has_config:
-            return None
-        Registry.attempt_init()
+    def _attempt_init_registry(self) -> Registry | RegistryFailed:
+        return Registry.attempt_init(config=self.config)

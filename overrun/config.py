@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import glob
+import io
 import itertools
 import logging
 import os
 import tomllib
 from collections import defaultdict
 from dataclasses import dataclass
-import io
 from enum import StrEnum
 from pathlib import Path, PurePath
 from typing import Self
